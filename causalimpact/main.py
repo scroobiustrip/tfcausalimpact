@@ -255,14 +255,14 @@ class CausalImpact():
     """
     def __init__(
         self,
-        model: Optional[tfp.sts.StructuralTimeSeries] = None,
         data: Union[np.array, pd.DataFrame],
         pre_period: Union[List[int], List[str], List[pd.Timestamp]],
         post_period: Union[List[int], List[str], List[pd.Timestamp]],
+        model: Optional[List[tfp.sts.StructuralTimeSeries]] = None,
         model_args: Dict[str, Any] = {},
         alpha: float = 0.05
     ):
-        processed_input = cidata.process_input_data(model, data, pre_period, post_period, model_args, alpha)
+        processed_input = cidata.process_input_data(data, pre_period, post_period, model, model_args, alpha)
         self.data = data
         self.processed_data_index = processed_input['data'].index
         self.pre_period = processed_input['pre_period'],
