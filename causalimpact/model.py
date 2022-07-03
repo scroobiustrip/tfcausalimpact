@@ -130,7 +130,7 @@ def process_model_args(model_args: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def check_input_model(
-    model: tfp.sts.StructuralTimeSeries,
+    model: List[tfp.sts.StructuralTimeSeries],
     pre_data: pd.DataFrame,
     post_data: pd.DataFrame
 ) -> None:
@@ -179,8 +179,8 @@ def check_input_model(
             for parameter in component.parameters:
                 assert parameter.prior.dtype == tf.float32
 
-    if not isinstance(model, tfp.sts.StructuralTimeSeries):
-        raise ValueError('Input model must be of type StructuralTimeSeries.')
+    if not isinstance(model, (tfp.sts.StructuralTimeSeries, List)):
+        raise ValueError('Input model must be of type StructuralTimeSeries or List[tfp.sts.StructuralTimeSeries].')
     if isinstance(model, tfp.sts.Sum):
         for component in model.components:
             _check_component(component)

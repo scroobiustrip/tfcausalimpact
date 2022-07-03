@@ -32,7 +32,7 @@ def process_input_data(
     data: Union[np.array, pd.DataFrame],
     pre_period: Union[List[int], List[str], List[pd.Timestamp]],
     post_period: Union[List[int], List[str], List[pd.Timestamp]],
-    model: Optional[tfp.sts.StructuralTimeSeries],
+    model: Optional[List[tfp.sts.StructuralTimeSeries]],
     model_args: Dict[str, Any],
     alpha: float
 ) -> Dict[str, Any]:
