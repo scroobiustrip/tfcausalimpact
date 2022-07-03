@@ -137,9 +137,9 @@ def process_input_data(
     observed_time_series = _build_observed_time_series(
         pre_data if normed_data[0] is None else normed_data[0]
     )
+    # if model:
+    #     cimodel.check_input_model(model, pre_data, post_data)
     if model:
-        cimodel.check_input_model(model, pre_data, post_data)
-    else:
         model = cimodel.build_default_model(
             observed_time_series,
             normed_data[0] if model_args['standardize'] else pre_data,
