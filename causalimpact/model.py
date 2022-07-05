@@ -289,13 +289,15 @@ def build_default_model(
     components.append(level_component)
     # If it has more than 1 column then it has covariates X so add a linear regressor
     # component.
+
+    components.extend(model_components)
+
     if len(pre_data.columns) > 1:
 
         complete_data = pd.concat([pre_data, post_data]).astype(np.float32)
         # Set NaN values to zero so to not break TFP linear regression
         complete_data.fillna(0, inplace=True)
 
-        components.append(model_components)
 
     # Model must be built with `tfp.sts.Sum` so to add the observed noise `epsilon`
     # parameter.
