@@ -145,9 +145,7 @@ def process_input_data(
             normed_data[0] if model_args['standardize'] else pre_data,
             normed_data[1] if model_args['standardize'] else post_data,
             model,
-            model_args['prior_level_sd'],
-            model_args['nseasons'],
-            model_args['season_duration']
+            model_args['prior_level_sd']
         )
     return {
         'data': data,
